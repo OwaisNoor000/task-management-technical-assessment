@@ -1,6 +1,9 @@
 # Node modules
 node_modules/
 
+# next Modules
+.next/
+
 # Build output
 dist/
 build/

@@ -221,3 +221,62 @@ After setup, create sample data:
 If you have questions about requirements or need clarification on any aspect of the test, please ask. We value communication and problem-solving approach as much as the final implementation.
 
 Good luck!
+
+#### Setup
+
+## Backend Setup
+- Clone the repository and navigate to backend
+
+```
+git clone https://github.com/Gabrielmokhele/task-management-technical-assessment.git
+```
+
+```
+cd your-repo/backend
+```
+
+- Install dependencies
+
+```
+npm install
+```
+
+- Create your environment variables
+
+Copy the example file:
+
+```
+cp .env.example .env
+```
+
+- Edit .env to include your database connection string, JWT secret, and any other required variables.
+
+- start the backend server
+
+```
+npm start
+```
+
+- By default, the server listens on http://localhost:5000.
+
+## Frontend Setup
+
+- Navigate to frontend directory
+
+```
+cd ../frontend
+```
+
+- Install dependencies
+
+```
+npm install
+```
+
+- Start the frontend development server
+
+```
+npm start
+```
+
+Open your browser at http://localhost:3000.
