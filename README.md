@@ -249,7 +249,13 @@ Copy the example file:
 cp .env.example .env
 ```
 
-- Edit .env to include your database connection string, JWT secret, and any other required variables.
+#### Edit .env to include your database connection string, JWT secret, and any other required variables.
+- PORT=
+- DB_HOST=
+- DB_USER=
+- DB_PASSWORD=
+- DB_NAME=
+- JWT_SECRET=
 
 - start the backend server
 

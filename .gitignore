@@ -1,16 +1,12 @@
 # Node modules
 node_modules/
 
-# next Modules
-.next/
-
 # Build output
 dist/
 build/
 
 # Environment variables
 .env
-.env.* 
 
 # Logs
 npm-debug.log*
@@ -40,7 +36,3 @@ pnpm-debug.log*
 
 # Debug files
 *.log
-
-# Postman environment files (optional)
-*.postman_environment.json
-*.postman_collection.json

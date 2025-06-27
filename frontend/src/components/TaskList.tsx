@@ -30,7 +30,6 @@ const TaskList: React.FC<TaskListProps> = ({
   const [filterStatus, setFilterStatus] = useState<TaskStatus | "all">("all");
   const [filterPriority, setFilterPriority] = useState<"all" | "low" | "normal" | "high">("all");
 
-  // Filtered tasks based on filters
   const filteredTasks = useMemo(() => {
     return tasks.filter((task) => {
       if (filterStatus !== "all" && task.status !== filterStatus) return false;

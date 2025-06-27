@@ -13,10 +13,6 @@ import { Edit } from "@mui/icons-material";
 import { Delete} from "@mui/icons-material";
 import { Task } from "../types/tasks";
 
-interface WithAuthProps {
-  task: Task;
-}
-
 interface Props {
   task: Task;
   onToggleComplete: (task: Task) => void;

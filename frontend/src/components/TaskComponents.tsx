@@ -128,8 +128,8 @@ const TaskComponents = () => {
   onCancel={handleCancel}
   errorMessage={errorMessage}
   clearError={() => setErrorMessage(null)}
-  successMessage={successMessage}           // add this
-  clearSuccess={() => setSuccessMessage(null)} // and this
+  successMessage={successMessage}  
+  clearSuccess={() => setSuccessMessage(null)} 
 />
 
       </Box>
