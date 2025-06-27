@@ -1,4 +1,3 @@
-// src/hoc/withAuth.tsx
 import React, { useEffect, useState, ComponentType } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
