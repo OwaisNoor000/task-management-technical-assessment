@@ -232,7 +232,7 @@ git clone https://github.com/Gabrielmokhele/task-management-technical-assessment
 ```
 
 ```
-cd your-repo/backend
+cd ../backend
 ```
 
 - Install dependencies
