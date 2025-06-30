@@ -1,0 +1,21 @@
+{
+  "name": "todo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "twcompile": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css",
+    "twcompiling": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css --watch"
+  },
+  "devDependencies": {
+    "typescript": "~5.8.3",
+    "vite": "^7.0.0"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.11",
+    "tailwindcss": "^4.1.11"
+  }
+}
