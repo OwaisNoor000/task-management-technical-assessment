@@ -4,6 +4,8 @@ export enum CustomError{
     LOGIN_EMAIL_INCORRECT="There is no user with the email you entered, please register first",
     USER_ID_NONEXISTENT="There is no user with the email you entered, please register first",
     UPDATE_REQUEST_MISSING_ID="Your update/delete request is missing the ID",
+    INVALID_JWT_TOKEN="Invalid or expired JWT token ",
+    MISSING_JWT_TOKEN="JWT token missing ",
 }
 
 export default class AppError extends Error {

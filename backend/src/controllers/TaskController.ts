@@ -4,8 +4,10 @@ import { TaskCreationRequest, TaskResponseDto, TasksRequestDto, TaskUpdateReques
 import {TaskPaginateParams, TaskSortParams} from "../types/TaskParams";
 import {Response,Request} from "express";
 import * as taskService from "../services/TaskService";
+import AppError, { CustomError } from "../types/AppError";
+import { AuthRequest } from "../types/AuthRequest";
 
-export async function getTasks(req:Request,res:Response){
+export async function getTasks(req:AuthRequest,res:Response){
     // Extract query params
     const filterOperations:FilterOperation[] = [];
     for(const[key,value] of Object.entries(By)){
@@ -49,7 +51,12 @@ export async function getTasks(req:Request,res:Response){
         };
 
     // Extract url params
-    const userId:number = parseInt(req.params.id,10);
+    if(req.user?.userId===undefined){
+        throw new AppError(CustomError.MISSING_JWT_TOKEN,"The jwt token was not checked by the Jwt Middleware and is missing");    
+    }
+
+    const userId:number = req.user?.userId;
+    
 
     try{
         const tasksRequest:TasksRequestDto = {userId:userId,queryOperations:taskQueryOperations};
@@ -61,8 +68,16 @@ export async function getTasks(req:Request,res:Response){
     }
 }
 
-export async function createTask(req:Request,res:Response){
+export async function createTask(req:AuthRequest,res:Response){
     const taskCreationRequest:TaskCreationRequest = req.body;
+    
+    // Assign the user id from jwt to the taskCreationRequest
+    if(req.user?.userId===undefined){
+        throw new AppError(CustomError.MISSING_JWT_TOKEN,"The jwt token was not checked by the Jwt Middleware and is missing");    
+    }
+
+    taskCreationRequest.user_id = req.user?.userId;
+
     try{
         const createdTask:TaskResponseDto = await taskService.createTask(taskCreationRequest); 
         return res.status(201).json(createdTask);
@@ -77,6 +92,8 @@ export async function updateTask(req:Request,res:Response){
     const taskId:number = parseInt(req.params.id,10)
     const taskUpdateRequest:Partial<TaskUpdateRequest> = req.body;
     taskUpdateRequest.id = taskId;
+    
+
     try{
         const partialTask:TaskResponseDto = await taskService.updateTask(taskUpdateRequest);
         return res.status(201).json(partialTask);

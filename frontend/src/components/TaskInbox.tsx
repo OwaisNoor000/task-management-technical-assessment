@@ -1,12 +1,19 @@
-import {chakra} from "@chakra-ui/react";
+import Task from "./Task";
+import { IoMdAdd } from "react-icons/io";
+import TaskForm from "./TaskForm";
+
 
 export default function TaskInbox(){
-    return(
-        <chakra.div width={"50%"} minHeight={"50%"} display={"flex"} flexDirection={"flex-column"} margin={"100px 30px 20px 30px"}
-         backgroundColor={"red"}>
-            <chakra.span fontSize={"50px"} color={"white"}>Today</chakra.span>
-            <chakra.span>Today</chakra.span>
+    return (
+        <div className="w-2/3 min-h-[500px] mt-24  p-4">
+            <span className="text-4xl font-bold text-white">Inbox</span>
+            <Task/>
 
-        </chakra.div>
+            <div className="flex flex-row items-center text-xl text-gray-300 hover:text-[#DE4C4A] hover:cursor-pointer">
+                <IoMdAdd className="text-gray-300 mx-2 text-2xl"/>
+                <span className="">Add Task</span>
+            </div>
+            <TaskForm/>
+        </div>
     )
 }
