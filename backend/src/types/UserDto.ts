@@ -22,4 +22,5 @@ export interface LoginResponseDto{
     status:boolean;
     result:string;
     user:UserResponseDto;
+    token:string;
 }

@@ -3,10 +3,10 @@ import { useRef } from 'react';
 type AutoresizeInputProps = {
     className:string,
     placeholder:string
-
+    defaultValue?:string
 }
 
-export default function AutoresizeInput({className,placeholder}:AutoresizeInputProps){
+export default function AutoresizeInput({className,placeholder,defaultValue}:AutoresizeInputProps){
     const handleKeyDown = (e:any) =>{
     e.target.style.height = 'inherit';
     e.target.style.height = `${e.target.scrollHeight}px`; 
@@ -15,7 +15,7 @@ export default function AutoresizeInput({className,placeholder}:AutoresizeInputP
     }
 
     return(
-        <textarea onKeyDown={handleKeyDown} className={className} placeholder={placeholder}/>
+        <textarea onKeyDown={handleKeyDown} className={className} placeholder={placeholder} defaultValue={defaultValue}/>
     )
 
 }

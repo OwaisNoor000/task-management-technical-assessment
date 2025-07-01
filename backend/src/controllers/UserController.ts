@@ -23,8 +23,8 @@ export async function login(req:Request,res:Response){
         
         if(loginStatus.status===true){
             const token = generateJwt(loginStatus.user.userId, loginStatus.user.email);
-            res.setHeader("Authorization", `Bearer ${token}`);
-        }
+            loginStatus.token = token;
+       }
         
 
         return res.status(200).json(loginStatus);

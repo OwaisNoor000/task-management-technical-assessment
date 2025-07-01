@@ -39,16 +39,7 @@ export const loginUser:(val:LoginRequestDto)=>Promise<LoginResponseDto> = async(
         return {"status":true,"result":"","user":userResponse} as LoginResponseDto;
 
     }catch(err){
-        if(err instanceof AppError){
-            if(err.code === CustomError.LOGIN_EMAIL_INCORRECT){
-                return {"status":false,"result":err.code} as LoginResponseDto;
-            }else if(err.code === CustomError.LOGIN_PASSWORD_INCORRECT){
-                return {"status":false,"result":err.code} as LoginResponseDto;
-            }
-        }
-        
-        return {"status":false,"result":String(err)} as LoginResponseDto;
-        
+        throw err
     }
 }
 

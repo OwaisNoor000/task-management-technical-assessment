@@ -1,7 +1,6 @@
 import express from "express";
 import * as userController from "../controllers/UserController";
 import { asyncHandler } from "../utils/GeneralUtil";
-import { validate } from "../../../../../../../node_modules/@langchain/core/dist/utils/fast-json-patch/index";
 import { LoginRequestSchema, UserRequestSchema } from "../types/UserSchema";
 import { validateSchema } from "../middleware/ReqValidationMiddleware";
 import { authenticateJWT } from "../middleware/JwtAuthMiddleware";

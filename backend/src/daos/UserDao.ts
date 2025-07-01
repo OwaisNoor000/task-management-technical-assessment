@@ -36,7 +36,7 @@ export const createUser:(val:User)=>Promise<User> = async (user:User)=>{
     }
     
     let response = result.rows[0]
-    let createdUser:User = new User(response.id,response.email,response.password,response.created)
+    let createdUser:User = new User(response.id,response.email,response.password,response.name,response.created)
     return createdUser;
 }
 
@@ -73,10 +73,10 @@ export const matchEmailAndPassword:(val:User)=>Promise<User> = async (user:User)
         if(passwordCheck){
             return new User(matchingUser.id,matchingUser.email,matchingUser.password,matchingUser.name,matchingUser.created);
         }else{
-            throw new AppError(CustomError.LOGIN_PASSWORD_INCORRECT,"");
+            throw new AppError(CustomError.LOGIN_PASSWORD_INCORRECT,CustomError.LOGIN_PASSWORD_INCORRECT);
         }
 
     }else{
-        throw new AppError(CustomError.LOGIN_EMAIL_INCORRECT,"");
+        throw new AppError(CustomError.LOGIN_EMAIL_INCORRECT,CustomError.LOGIN_EMAIL_INCORRECT);
     }
 }

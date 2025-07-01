@@ -3,3 +3,20 @@
 body{
     background-color:"#3C3C3C";
 }
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #6b7280 #e5e7eb; /* thumb track */
+}
+
+/* For Webkit (Chrome, Edge, Safari) */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #e5e7eb;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #6b7280;
+  border-radius: 4px;
+}
