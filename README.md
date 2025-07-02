@@ -263,7 +263,7 @@ cp .env.example .env
 npm start
 ```
 
-- By default, the server listens on http://localhost:5000.
+- By default, the server listens on http://localhost:3000.
 
 ## Frontend Setup
 
@@ -279,7 +279,7 @@ cd ../frontend
 npm install
 ```
 
-- Start the frontend development server
+- Start the frontend development server on port 5173
 
 ```
 npm start
