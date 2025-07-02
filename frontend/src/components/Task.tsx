@@ -71,7 +71,8 @@ export default function Task({id, title, description, priority, status, lastModi
                         <div className="flex flex-row">
                             <MdEdit onClick={()=>editTaskFunc(id)}
                                 className="text-2xl text-gray-500 mx-2 hover:cursor-pointer" style={{display:editDeleteIconVisibility}}/>
-                            <FaCheckDouble className="text-2xl text-gray-500 mx-2 hover:cursor-pointer" style={{display:editDeleteIconVisibility}}/>
+                            <FaCheckDouble
+                            className="text-2xl text-gray-500 mx-2 hover:cursor-pointer" style={{display:editDeleteIconVisibility}}/>
                         </div>
                     </div>
                     <span className="text-xl text-gray-300 pb-2">{description}</span>

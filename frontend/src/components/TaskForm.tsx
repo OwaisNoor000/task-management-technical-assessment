@@ -11,22 +11,29 @@ import { TaskResponse, TaskUpdateRequest } from "../types/TaskDto";
 type TaskFormProps = {
     saveFunc?:(task:TaskUpdateRequest)=>void;
     cancelFunc?:()=>void;
+    editSyncVariable:any; // A variable meant to rerun the Context-State Sync hook
 }
 
-export default function TaskForm({saveFunc,cancelFunc}:TaskFormProps){
+export default function TaskForm({saveFunc,cancelFunc,editSyncVariable}:TaskFormProps){
     const {taskData,setTaskData} = useContext(TaskContext);
     const [chosenId,setChosenId] = useState(taskData.taskToUpdate.id);
     const [chosenTitle,setChosenTitle] = useState(taskData.taskToUpdate.title);
     const [chosenDescription,setChosenDescription] = useState(taskData.taskToUpdate.description);
     const [chosenPriority,setChosenPriority] = useState(taskData.taskToUpdate.priority);
-    
+
     // Sync the states with context values
+    // Context-State Sync Hook
     useEffect(() => {
         setChosenId(taskData.taskToUpdate.id);
         setChosenTitle(taskData.taskToUpdate.title);
         setChosenDescription(taskData.taskToUpdate.description);
         setChosenPriority(taskData.taskToUpdate.priority);
-    }, [taskData.taskToUpdate]);
+
+        console.log("sync hook")
+        console.log(taskData.taskToUpdate);
+        console.log(chosenTitle)
+        console.log(chosenDescription);
+    }, [taskData,editSyncVariable]);
     
 
     const saveFuncLocal = ()=>{
@@ -48,6 +55,11 @@ export default function TaskForm({saveFunc,cancelFunc}:TaskFormProps){
                 taskToUpdate:updatedTask
             }
          ));
+         
+         // Reset text fields
+         setChosenTitle("");
+         setChosenDescription("");
+
          saveFunc!==undefined?saveFunc(updatedTask):console.log("TaskForm.savefunc is undefined");
     }
 
@@ -55,11 +67,11 @@ export default function TaskForm({saveFunc,cancelFunc}:TaskFormProps){
         <div className="w-[1000px] border-2 border-gray-300 flex flex-col rounded-xl h-fit mt-4
         absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1e1e1e]">
            <input className="border-0 focus:outline-none w-full h-10 my-1 text-gray-300 pl-4
-           text-lg font-bold" placeholder="Enter an actionable Task" defaultValue={chosenTitle} 
+           text-lg font-bold" placeholder="Enter an actionable Task" value={chosenTitle} 
            onChange={e=>{setChosenTitle(e.target.value)}}/>
            <AutoresizeInput className="border-0 focus:outline-none h-9 my-1 text-gray-400 pl-4
            text-lg max-h-[200px] resize-none overflow-hidden" placeholder="Description"
-           defaultValue={chosenDescription} setValue={setChosenDescription}/>
+           value={chosenDescription} setValue={setChosenDescription}/>
            
            <div className="flex flex-row m-3">
                 

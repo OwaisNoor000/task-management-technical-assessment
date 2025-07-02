@@ -13,7 +13,6 @@ export const TaskCreationRequestSchema = z.object({
   description: z.string(),
   status: TaskStatusEnumSchema,
   priority: TaskPrioritySchema,
-  user_id: z.number(),
 });
 
 export const TaskUpdateRequestSchema = z.object({
