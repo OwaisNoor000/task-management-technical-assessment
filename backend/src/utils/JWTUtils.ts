@@ -1,6 +1,10 @@
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
-const JWT_SECRET = "c2VjdXJlX3JlYWxseV9yYW5kb21fMTIzNDU2Nzg5MGFiY2Rl";
+dotenv.config();
+
+const JWT_SECRET = process.env.JWT_SECRET||"";
+
 
 export function generateJwt(userId: number, email: string) {
   return jwt.sign(

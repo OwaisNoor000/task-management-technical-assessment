@@ -1,9 +1,10 @@
 import {query} from "./index";
-import { validateEmail } from "../utils/GeneralUtil";
+import { hashPassword, validateEmail, verifyPassword } from "../utils/GeneralUtil";
 import { User } from "../models/User";
 import { UserRequestDto, UserResponseDto } from "../types/UserDto";
 import AppError, { CustomError } from "../types/AppError";
 import { response } from "express";
+import { verifyJwt } from "../utils/JWTUtils";
 
 
 export const getUserById:(val:number)=>Promise<User> = async (userId:number)=>{
@@ -22,13 +23,14 @@ export const getUserById:(val:number)=>Promise<User> = async (userId:number)=>{
 
 
 export const createUser:(val:User)=>Promise<User> = async (user:User)=>{
+    const hashedPassword = await hashPassword(user.password);
     const result = await query(
     `
     INSERT INTO users (email, password, name)
     VALUES ($1, $2, $3)
     RETURNING id, email, password, name, created_at
     `,
-    [user.email, user.password, user.name]
+    [user.email, hashedPassword, user.name]
     );
 
     if(result===null || result.rowCount===null || result.rowCount==0){
@@ -60,16 +62,19 @@ export const matchEmailAndPassword:(val:User)=>Promise<User> = async (user:User)
         
         const response2 = await query(
             `
-            SELECT * FROM users where email = $1 and password = $2
+            SELECT password FROM users where email = $1
             `,
-            [user.email,user.password]
+            [user.email]
         );
         if(response2===null || response.rowCount===null){
             throw new AppError(CustomError.DATABASE_ERROR,"DB did not return anything after statement execution");
         }
         console.log("Dao test");
         console.log(response2)
-        let passwordCheck = response2.rowCount===0?false:true;
+        let passwordCheck = false;
+        passwordCheck = await verifyPassword(user.password,response2.rows[0].password)
+        
+
         if(passwordCheck){
             return new User(matchingUser.id,matchingUser.email,matchingUser.password,matchingUser.name,matchingUser.created);
         }else{

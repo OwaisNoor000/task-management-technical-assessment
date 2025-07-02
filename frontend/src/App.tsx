@@ -5,7 +5,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import WelcomeForm from './components/WelcomeForm.tsx';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { Router } from 'react-router-dom';
-import AppRoutes from './routes/Router.tsx';
+import AppRoutes from './routes/Routes.tsx';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 

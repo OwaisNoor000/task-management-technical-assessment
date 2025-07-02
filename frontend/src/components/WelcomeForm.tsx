@@ -154,6 +154,8 @@ export default function WelcomeForm({formType}:WelcomeFormProps){
         setErrorVisibility(false);
       }
       
+      // Hash password
+
       // Create new user
       registerMutation.mutate({
         "name":username,

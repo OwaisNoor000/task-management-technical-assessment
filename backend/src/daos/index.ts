@@ -1,13 +1,18 @@
 import { Pool,types } from 'pg';
+import dotenv from "dotenv";
+
+dotenv.config()
 
 const connectionString = process.env.PG_CONNECTION_STRING;
+console.log(connectionString);
+// const pool = new Pool({
+//     user:"postgres",
+//     password:"pass101",
+//     host:"localhost",
+//     database:"JDevDB"
+// });
 
-const pool = new Pool({
-    user:"postgres",
-    password:"pass101",
-    host:"localhost",
-    database:"JDevDB"
-});
+const pool = new Pool({connectionString});
 
 
 

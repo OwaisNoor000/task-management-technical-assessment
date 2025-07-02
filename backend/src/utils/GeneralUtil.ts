@@ -17,11 +17,16 @@ export const generateTodayDateTime:()=>string = ()=>{
     return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
 
-export const hashPassword:(val:string)=>Promise<string> = (password:string)=>{
+export const hashPassword:(val:string)=>Promise<string> = async (password:string)=>{
     const saltRounds = 10;
-    const hashedPassword = bcrypt.hash(password,saltRounds).then(result=>{return result} ); 
+    const hashedPassword = await bcrypt.hash(password,saltRounds).then(result=>{return result} ); 
     // We do this because the above variable is a promise
     return hashedPassword;
+}
+
+export async function verifyPassword(plainPassword:string, hashedPassword:string) {
+  const isMatch = await bcrypt.compare(plainPassword, hashedPassword);
+  return isMatch;
 }
 
 export const validateEmail:(val:string)=>boolean = (email:string)=>{
