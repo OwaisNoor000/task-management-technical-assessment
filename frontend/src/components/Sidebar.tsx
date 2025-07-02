@@ -2,8 +2,9 @@ import "../output.css";
 import Avatar from "./Avatar";
 import {BellIcon,HamburgerMenuIcon} from "@radix-ui/react-icons";
 import {Menu} from "@chakra-ui/react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { IoIosAddCircle } from "react-icons/io";
+import TaskContextProvider, { TaskContext } from "../hooks/TaskContext";
 
 export default function Sidebar(){
 

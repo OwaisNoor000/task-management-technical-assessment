@@ -1,16 +1,7 @@
 import * as z from "zod/v4";
+import { TaskStatusEnum } from "./TaskStatusEnum";
+import { TaskPriority } from "./TaskPriority";
 
-enum TaskStatusEnum {
-  Pending = "Pending",
-  InProgress = "InProgress",
-  Completed = "Completed",
-}
-
-enum TaskPriority {
-  Low = "Low",
-  Medium = "Medium",
-  High = "High",
-}
 
 
 const TaskStatusEnumSchema = z.nativeEnum(TaskStatusEnum);

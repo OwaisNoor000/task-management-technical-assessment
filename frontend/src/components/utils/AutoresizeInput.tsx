@@ -1,12 +1,13 @@
-import { useRef } from 'react';
+import React, { useRef } from 'react';
 
 type AutoresizeInputProps = {
     className:string,
     placeholder:string
     defaultValue?:string
+    setValue:(val:string)=>void
 }
 
-export default function AutoresizeInput({className,placeholder,defaultValue}:AutoresizeInputProps){
+export default function AutoresizeInput({className,placeholder,defaultValue,setValue }:AutoresizeInputProps){
     const handleKeyDown = (e:any) =>{
     e.target.style.height = 'inherit';
     e.target.style.height = `${e.target.scrollHeight}px`; 
@@ -15,7 +16,8 @@ export default function AutoresizeInput({className,placeholder,defaultValue}:Aut
     }
 
     return(
-        <textarea onKeyDown={handleKeyDown} className={className} placeholder={placeholder} defaultValue={defaultValue}/>
+        <textarea onKeyDown={handleKeyDown} className={className} placeholder={placeholder} defaultValue={defaultValue}
+        onChange={e=>{setValue(e.target.value)}}/>
     )
 
 }

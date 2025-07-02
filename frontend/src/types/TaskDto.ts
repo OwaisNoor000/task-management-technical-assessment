@@ -12,3 +12,11 @@ export interface TaskResponse{
       user_id:number;
 }
 
+export interface TaskUpdateRequest{
+      id:number;
+      title: string;
+      description: string;
+      status: TaskStatusEnum;
+      priority: TaskPriority;
+}
+

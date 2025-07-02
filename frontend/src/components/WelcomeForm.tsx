@@ -77,6 +77,7 @@ export default function WelcomeForm({formType}:WelcomeFormProps){
       onSuccess:(res)=>{
 
         localStorage.setItem("token",res.token);
+        localStorage.setItem("userId",String(res.user.userId));
 
         navigate("/home");
         setSuccessMessageVisibility("flex");
