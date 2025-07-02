@@ -6,7 +6,7 @@ export function generateJwt(userId: number, email: string) {
   return jwt.sign(
     { userId, email },
     JWT_SECRET,
-    { expiresIn: "1h" } // token valid for 1 hour
+    { expiresIn: "3h" } // token valid for 1 hour
   );
 }
 

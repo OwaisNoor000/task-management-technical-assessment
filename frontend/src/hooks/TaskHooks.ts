@@ -1,11 +1,14 @@
 import axios from "axios";
 import type { TaskResponse, TaskUpdateRequest } from "../types/TaskDto";
 
-export const getAllTasks:()=>Promise<TaskResponse[]> = async()=>{
+export const getAllTasks:({queryKey}:{queryKey:any[]})=>Promise<TaskResponse[]> = async({queryKey}:{queryKey:any[]})=>{
+    const [x,sortBy, sortOrder] = queryKey;
     return axios.get<TaskResponse[]>("http://localhost:3000/api/tasks",{
         headers:{
             Authorization:`Bearer ${localStorage.getItem("token")}`
-        }
+        },
+        params: { sortBy, sortOrder }
+
     }).then(
        (response)=>{return response.data}
     )
