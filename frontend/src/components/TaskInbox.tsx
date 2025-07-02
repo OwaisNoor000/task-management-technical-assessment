@@ -26,12 +26,13 @@ export default function TaskInbox(){
     const {taskData,setTaskData} = useContext(TaskContext);
     const [sortCol,setSortCol] = useState<By>(By.TASK_ID);
     const [sortBy,setSortBy] = useState<sortOrder>("asc");
+    const [statusFilter,setStatusFilter] = useState<TaskStatusEnum|null>(null);
 
 
     const queryClient = useQueryClient();
 
     const {status,error,data} = useQuery({
-        queryKey:["tasks",sortCol,sortBy],
+        queryKey:["tasks",sortCol,sortBy,statusFilter],
         queryFn:getAllTasks,
     });
 
@@ -73,15 +74,6 @@ export default function TaskInbox(){
         },
     });
     
-    const addMutation = useMutation({
-        mutationFn:persistTask,
-        onSuccess:newTask=>{
-            // Cache the task on the frontend
-            queryClient.setQueryData(["tasks",newTask.id],newTask);
-        },
-        onError:(err)=>{console.log(err)}
-
-    });
 
     const saveMutation = useMutation({
         mutationFn: persistTask,
@@ -143,6 +135,12 @@ export default function TaskInbox(){
         console.log(data);
     }
 
+    useEffect(()=>{
+        setStatusFilter(taskData.filter);
+    },[taskData.filter]);
+
+
+    // Functions
     const editTask = (id:number)=>{
         // Do not execute this function if an edit pop up is already opened
         if(editMode===true || addMode===true){

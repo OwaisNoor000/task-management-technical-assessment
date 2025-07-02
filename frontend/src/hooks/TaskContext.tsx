@@ -7,6 +7,7 @@ import { TaskPriority } from "../types/TaskPriority";
 
 export type TaskData = {
     taskToUpdate:TaskUpdateRequest, // Can be a new or modified task
+    filter:TaskStatusEnum|null,
 }
 
 export interface TaskContextInterface{
@@ -21,7 +22,8 @@ const defaultState = {
           description:"",
         status: TaskStatusEnum.PENDING,
         priority: TaskPriority.LOW,
-        }
+        
+    },filter:null
     } as TaskData,
     setTaskData:(taskData:TaskData)=>{},
 } as TaskContextInterface;
@@ -34,7 +36,7 @@ type TaskContextProviderProps = {
 
 export default function TaskContextProvider({children}:TaskContextProviderProps){
     const [taskData,setTaskData] = useState<TaskData>(
-        {taskToUpdate:{id:-1,title:"",description:"",status:TaskStatusEnum.PENDING,priority:TaskPriority.LOW}}
+        {taskToUpdate:{id:-1,title:"",description:"",status:TaskStatusEnum.PENDING,priority:TaskPriority.LOW},filter:null}
     );
 
     return(
