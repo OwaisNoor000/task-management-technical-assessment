@@ -26,14 +26,3 @@ const config = defineConfig({
     },
   },
 })
-
-\myred: {
-        100:"#3c3c3c"
-    },
-    secondary: {
-      100: "#262626",
-      200: "#1E1E1E"
-    },
-    accent: {
-      500: "#5297FF",
-    },
